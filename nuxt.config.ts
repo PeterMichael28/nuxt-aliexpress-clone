@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   'nuxt-icon',
   'nuxt-lodash',
   '@pinia/nuxt',
-  '@nuxt/tailwindcss',
+  '@nuxtjs/tailwindcss',
   // '@pinia-plugin-persistedstate/nuxt',
   // '@nuxtjs/supabase'
  ],
@@ -26,4 +26,6 @@ export default defineNuxtConfig({
    script: [{ src: 'https://js.stripe.com/v3/', defer: true }],
   },
  },
-});
+} );
+
+
