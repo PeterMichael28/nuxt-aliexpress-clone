@@ -10,11 +10,11 @@
     </MainLayout>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import MainLayout from '~/layouts/MainLayout.vue'
 
-// let products = ref(null)
-export let products: any[] = [];
+
+let products = [];
 for (let i = 0; i < 10; i++) {
    let product = {
        id: i + 1, // assuming ids start from 1

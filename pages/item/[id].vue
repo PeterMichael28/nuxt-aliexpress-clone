@@ -4,11 +4,11 @@
             <div class="md:flex gap-4 justify-between mx-auto w-full">
                 <div class="md:w-[40%]">
                     <img 
-                        v-if="currentImage"
+                        v-if="product.url"
                         class="rounded-lg object-fit"
-                        :src="currentImage"
+                        :src="product.url"
                     >
-                    <div v-if="images[0] !== ''" class="flex items-center justify-center mt-2">
+                    <!-- <div v-if="images[0] !== ''" class="flex items-center justify-center mt-2">
                         <div v-for="image in images">
                             <img 
                                 @mouseover="currentImage = image"
@@ -19,12 +19,12 @@
                                 :src="image"
                             >
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="md:w-[60%] bg-white p-3 rounded-lg">
-                    <div v-if="product && product.data">
-                        <p class="mb-2">{{ product.data.title }}</p>
-                        <p class="font-light text-[12px] mb-2">{{ product.data.description }}</p>
+                    <div v-if="product">
+                        <p class="mb-2">{{ product.title }}</p>
+                        <p class="font-light text-[12px] mb-2">{{ product.description }}</p>
                     </div>
 
                     <div class="flex items-center pt-1.5">
@@ -85,30 +85,46 @@
 </template>
 <script setup>
 import MainLayout from '~/layouts/MainLayout.vue';
-import {products} from '~/pages/index.vue';
+
 import { useUserStore } from '~/stores/user.js';
+
+let products = [];
+for (let i = 0; i < 10; i++) {
+   let product = {
+       id: i + 1, // assuming ids start from 1
+       title: `Product ${i + 1}`,
+       description: `Description for Product ${i + 1}`,
+       url: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6CmNjCyjmLxpDzaYTrneBOLu1_MgKeMjgcg&usqp=CAU`,
+       price: 100 // random price between 0 and 100
+   };
+   products.push(product);
+}
+
 const userStore = useUserStore()
 
 const route = useRoute()
 
-let product = ref(null)
-let currentImage = ref(null)
+let product = null
+let currentImage = null
 
 onBeforeMount( () => {
-     products.forEach((prod) => {
-        if (route.params.id == prod.id) {
-            product.value = prod
+    products.forEach( ( prod ) => {
+        if ( route.params.id == prod.id ) {
+            
+            product = prod;
         }
+    });
 })
 
-watchEffect(() => {
-    if (product.value && product.value.data) {
-        currentImage.value = product.value.data.url
-        images.value[0] = product.value.data.url
+watchEffect( () => {
+    // console.log({product})
+    if (product) {
+        currentImage = product.url
+        images[0] = product.url
         userStore.isLoading = false
     }
 })
-
+console.log({currentImage})
 
 const isInCart = computed(() => {
     let res = false
@@ -121,8 +137,8 @@ const isInCart = computed(() => {
 })
 
 const priceComputed = computed(() => {
-    if (product.value && product.value.data) {
-        return product.value.data.price / 100
+    if (product) {
+        return product.price / 100
     }
     return '0.00'
 })
@@ -137,7 +153,7 @@ const images = ref([
 ])
 
 const addToCart = () => {
-    userStore.cart.push(product.value.data)
+    userStore.cart.push(product)
 }
 </script>
 

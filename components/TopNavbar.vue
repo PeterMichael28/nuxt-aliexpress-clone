@@ -7,27 +7,32 @@
     class="flex items-center justify-end text-xs text-[#333333] font-light px-2 h-10 bg-[#FAFAFA] max-w-[1200px]"
    >
     <li
-     class="border-r border-r-gray-400 px-3 hover:text-[#FF4646] cursor-pointer"
+     class="border-r border-r-gray-400 px-3 hover:text-[#FF4646] cursor-pointer transition-all
+            duration-300 "
     >
      Sell on AliExpress
     </li>
     <li
-     class="border-r border-r-gray-400 px-3 hover:text-[#FF4646] cursor-pointer"
+     class="border-r border-r-gray-400 px-3 hover:text-[#FF4646] cursor-pointer transition-all
+            duration-300"
     >
      Cookie Preferences
     </li>
     <li
-     class="border-r border-r-gray-400 px-3 hover:text-[#FF4646] cursor-pointer"
+     class="border-r border-r-gray-400 px-3 hover:text-[#FF4646] cursor-pointer transition-all
+            duration-300"
     >
      Help
     </li>
     <li
-     class="border-r border-r-gray-400 px-3 hover:text-[#FF4646] cursor-pointer"
+     class="border-r border-r-gray-400 px-3 hover:text-[#FF4646] cursor-pointer transition-all
+            duration-300"
     >
      Buyer Protection
     </li>
 
-    <li class="px-3 hover:text-[#FF4646] cursor-pointer">
+    <li class="px-3 hover:text-[#FF4646] cursor-pointer transition-all
+            duration-300">
      <Icon
       name="ic:sharp-install-mobile"
       size="17"
@@ -38,7 +43,8 @@
     <li
      @mouseenter="isAccountMenu = true"
      @mouseleave="isAccountMenu = false"
-     class="relative flex items-center px-2.5 hover:text-[#FF4646] h-full cursor-pointer"
+     class="relative flex items-center px-2.5 hover:text-[#FF4646] h-full cursor-pointer transition-all
+            duration-300"
      :class="
       isAccountMenu
        ? 'bg-white border z-40 shadow-[0_15px_100px_40px_rgba(0,0,0,0.3)]'
@@ -76,12 +82,14 @@
       </div>
       <div class="border-b" />
       <ul class="bg-white">
-       <li class="text-[13px] py-2 px-4 w-full hover:bg-gray-200">
+       <li class="text-[13px] py-2 px-4 w-full hover:bg-gray-200 transition-all
+            duration-300" >
         My Orders
        </li>
        <li
         v-if="true"
-        class="text-[13px] py-2 px-4 w-full hover:bg-gray-200"
+        class="text-[13px] py-2 px-4 w-full hover:bg-gray-200 transition-all
+            duration-300"
        >
         Sign out
        </li>
@@ -92,7 +100,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup >
 let isAccountMenu = ref(false);
 
 </script>

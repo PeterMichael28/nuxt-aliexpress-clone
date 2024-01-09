@@ -113,7 +113,7 @@
 
 </template>
 
-<script setup lang="ts">
+<script setup >
 let isSearching = ref(false);
 let searchItem = ref('');
 let isCartHover = ref(false);
