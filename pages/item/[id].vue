@@ -63,7 +63,7 @@
 
                     <button 
                         @click="addToCart()"
-                        :disabled="isInCart"
+                     
                         class="
                             px-6 
                             py-2 
@@ -74,7 +74,7 @@
                             bg-gradient-to-r 
                             from-[#FF851A] 
                             to-[#FFAC2C]
-                            disabled:cursor-not-allowed
+                          
                             
                         "
                     >
@@ -161,7 +161,13 @@ const priceComputed = computed(() => {
 
 
 const addToCart = () => {
+    if ( isInCart.value !== true ) {
         userStore.cart.push(product)
+    } else { 
+        const index = userStore.cart.findIndex( item => item.id === product.id );
+        userStore.cart.splice(index, 1);
+} 
+
 }
 </script>
 
