@@ -6,9 +6,11 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
 }
+
 
 model Addresses {
   id         Int       @id @default(autoincrement())
@@ -33,7 +35,7 @@ model Orders {
   created_at DateTime?   @default(now()) @db.Timestamptz(6)
   orderItem  OrderItem[]
 }
-// 
+
 model OrderItem {
   id         Int       @id @default(autoincrement())
   orderId    Int
