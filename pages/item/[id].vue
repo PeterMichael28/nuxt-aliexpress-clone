@@ -138,7 +138,7 @@ onMounted(() => {
         }
     })
 })
-// console.log({currentImage})
+console.log({userStore})
 
 const isInCart = computed(() => {
     let res = false

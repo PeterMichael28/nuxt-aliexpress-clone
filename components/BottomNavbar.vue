@@ -116,6 +116,7 @@
 <script setup >
 import { useUserStore } from '~/stores/user';
 
+const userStore = useUserStore()
 
 let isSearching = ref(false);
 let searchItem = ref('');
