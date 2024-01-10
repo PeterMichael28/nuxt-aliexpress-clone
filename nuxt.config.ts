@@ -12,10 +12,13 @@ export default defineNuxtConfig({
   'nuxt-icon',
   'nuxt-lodash',
   '@pinia/nuxt',
+  '@pinia-plugin-persistedstate/nuxt',
   '@nuxtjs/tailwindcss',
-//   '@pinia-plugin-persistedstate/nuxt',
   // '@nuxtjs/supabase'
  ],
+ build: {
+  transpile: ['pinia-plugin-persistedstate'],
+ },
  runtimeConfig: {
   public: {
    stripePk: process.env.STRIPE_PK_KEY,
@@ -26,6 +29,6 @@ export default defineNuxtConfig({
    script: [{ src: 'https://js.stripe.com/v3/', defer: true }],
   },
  },
-} );
+});
 
 
