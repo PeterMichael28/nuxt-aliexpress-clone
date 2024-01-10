@@ -34,7 +34,7 @@ watch(() => windowWidth.value, () => {
     }
 })
 
-watch(() => route.fullPath, () => {
-    userStore.isLoading = true
-})
+// watch(() => route.fullPath, () => {
+//     userStore.isLoading = true
+// })
 </script>
