@@ -31,7 +31,7 @@
             {{ error }}
         </span>
     </div>
-                    
+                   
 </template>
 
 <script setup>
