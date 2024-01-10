@@ -75,11 +75,11 @@ let isHover = ref(false)
 let isSelected = ref(false)
 
 const removeFromCart = () => {
-    // userStore.cart.forEach((prod, index) => {
-    //     if (prod.id === product.value.id) {
-    //         userStore.cart.splice(index, 1);
-    //     }
-    // })
+    userStore.cart.forEach((prod, index) => {
+        if (prod.id === product.value.id) {
+            userStore.cart.splice(index, 1);
+        }
+    })
 }
 
 watch(() => isSelected.value, (val) => {
