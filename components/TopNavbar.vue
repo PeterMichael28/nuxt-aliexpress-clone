@@ -52,7 +52,7 @@
                             <div class="text-semibold text-[15px] my-4 px-3">Welcome to AliExpress!</div>
                             <div class="flex items-center gap-1 px-3 mb-3">
                                 <NuxtLink 
-                                    to="/auth"
+                                    to="/login"
                                     class="bg-[#FF4646] text-center w-full text-[16px] rounded-sm text-white font-semibold p-2"
                                 >
                                     Login / Register

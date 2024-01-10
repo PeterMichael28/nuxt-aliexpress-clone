@@ -12,7 +12,7 @@
    >
     <img
      width="170"
-     src="/AliExpress-logo.png"
+     src="~/assets/AliExpress-logo.png"
     />
    </NuxtLink>
   </div>
@@ -26,7 +26,7 @@
    >
     <img
      class="w-full max-w-[30px]"
-     src="/google-logo.png"
+     src="~/assets/google-logo.png"
     />
     <div>Google</div>
    </button>
@@ -37,7 +37,7 @@
    >
     <img
      class="w-full max-w-[30px]"
-     src="/github-logo.png"
+     src="~/assets/github-logo.png"
     />
     <div>Github</div>
    </button>

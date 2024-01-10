@@ -163,7 +163,7 @@ onBeforeMount(async () => {
 
 watchEffect(() => {
     if (route.fullPath == '/checkout' && !user.value) {
-        return navigateTo('/auth')
+        return navigateTo('/login')
     }
 })
 

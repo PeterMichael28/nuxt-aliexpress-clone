@@ -140,6 +140,6 @@ const signOut = () => {
 
 const signIn = () => {
     userStore.isMenuOverlay = false
-    return navigateTo('/auth')
+    return navigateTo('/login')
 }
 </script>
