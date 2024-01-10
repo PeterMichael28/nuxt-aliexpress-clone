@@ -87,8 +87,8 @@
       <span
        class="absolute flex items-center justify-center -right-[3px] top-0 bg-[#FF4646] h-[17px] min-w-[17px] text-xs text-white px-0.5 rounded-full"
       >
-       <!-- {{ userStore.cart.length }} -->
-       0
+       {{ userStore.cart.length }}
+       
       </span>
       <div class="min-w-[40px]">
        <Icon
@@ -114,6 +114,9 @@
 </template>
 
 <script setup >
+import { useUserStore } from '~/stores/user';
+
+
 let isSearching = ref(false);
 let searchItem = ref('');
 let isCartHover = ref(false);

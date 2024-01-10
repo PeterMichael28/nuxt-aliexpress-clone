@@ -1,11 +1,11 @@
 <template>
     <MainLayout>
-        <div id="ItemPage" class="mt-4 max-w-[1200px] mx-auto px-2">
-            <div class="md:flex gap-4 justify-between mx-auto w-full">
-                <div class="md:w-[40%]">
+        <div id="ItemPage" class="my-4 max-w-[1200px] mx-auto px-2">
+            <div class="md:flex gap-4 justify-between mx-auto w-full space-y-4">
+                <div class="md:w-[40%] md:max-h-[20rem]">
                     <img 
                         v-if="currentImage"
-                        class="rounded-lg object-fit"
+                        class="rounded-lg object-fit h-full w-full"
                         :src="currentImage"
                     >
                     <div v-if="images[0] !== ''" class="flex items-center justify-center mt-2">
@@ -138,7 +138,7 @@ onMounted(() => {
         }
     })
 })
-console.log({currentImage})
+// console.log({currentImage})
 
 const isInCart = computed(() => {
     let res = false
