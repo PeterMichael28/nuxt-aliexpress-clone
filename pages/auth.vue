@@ -57,7 +57,7 @@
 
 <script setup>
 const client = useSupabaseClient()
-const user = {}
+const user = useSupabaseUser()
 
 watchEffect(() => {
     if (user.value) {
