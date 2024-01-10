@@ -87,30 +87,43 @@
     </MainLayout>
 </template>
 <script setup>
-import { onMounted } from 'vue';
 import MainLayout from '~/layouts/MainLayout.vue';
-
-import { useUserStore } from '~/stores/user.js';
-
-let products = [];
-for (let i = 0; i < 10; i++) {
-   let product = {
-       id: i + 1, // assuming ids start from 1
-       title: `Product ${i + 1}`,
-       description: `Description for Product ${i + 1}`,
-       url: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6CmNjCyjmLxpDzaYTrneBOLu1_MgKeMjgcg&usqp=CAU`,
-       price: 100 // random price between 0 and 100
-   };
-   products.push(product);
-}
-
+import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
 
 const route = useRoute()
 
-let product = null
+let product = ref(null)
 let currentImage = ref(null)
 
+onBeforeMount(async () => {
+    product.value = await useFetch(`/api/prisma/get-product-by-id/${route.params.id}`)
+})
+
+watchEffect(() => {
+    if (product.value && product.value.data) {
+        currentImage.value = product.value.data.url
+        images.value[0] = product.value.data.url
+        userStore.isLoading = false
+    }
+})
+
+const isInCart = computed(() => {
+    let res = false
+    userStore.cart.forEach(prod => {
+        if (route.params.id == prod.id) {
+            res = true
+        }
+    })
+    return res
+})
+
+const priceComputed = computed(() => {
+    if (product.value && product.value.data) {
+        return product.value.data.price / 100
+    }
+    return '0.00'
+})
 
 const images = ref([
     '',
@@ -121,53 +134,8 @@ const images = ref([
     'https://picsum.photos/id/144/800/800',
 ])
 
-onBeforeMount( () => {
-    products.forEach( ( prod ) => {
-        if ( route.params.id == prod.id ) {
-            
-            product = prod;
-        }
-    });
-})
-onMounted(() => {
-
-    watchEffect( () => {
-        // console.log({product})
-        if (product) {
-            currentImage.value = product.url
-            images.value[0] = product.url
-            userStore.isLoading = false
-        }
-    })
-})
-
-
-const isInCart = computed(() => {
-    let res = false
-    userStore.cart.forEach((prod) => {
-        if (route.params.id == prod.id) {
-            res = true
-        }
-    })
-    return res
-})
-
-const priceComputed = computed(() => {
-    if (product) {
-        return product.price / 100
-    }
-    return '0.00'
-})
-
-
 const addToCart = () => {
-    if ( isInCart.value !== true ) {
-        userStore.cart.push(product)
-    } else { 
-        const index = userStore.cart.findIndex( item => item.id === product.id );
-        userStore.cart.splice(index, 1);
-} 
-
+    userStore.cart.push(product.value.data)
 }
 </script>
 
