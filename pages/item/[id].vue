@@ -4,9 +4,9 @@
             <div class="md:flex gap-4 justify-between mx-auto w-full">
                 <div class="md:w-[40%]">
                     <img 
-                        v-if="product.url"
+                        v-if="currentImage"
                         class="rounded-lg object-fit"
-                        :src="product.url"
+                        :src="currentImage"
                     >
                     <div v-if="images[0] !== ''" class="flex items-center justify-center mt-2">
                         <div v-for="image in images">
@@ -85,6 +85,7 @@
     </MainLayout>
 </template>
 <script setup>
+import { onMounted } from 'vue';
 import MainLayout from '~/layouts/MainLayout.vue';
 
 import { useUserStore } from '~/stores/user.js';
@@ -106,7 +107,17 @@ const userStore = useUserStore()
 const route = useRoute()
 
 let product = null
-let currentImage = null
+let currentImage = ref(null)
+
+
+const images = ref([
+    '',
+    'https://picsum.photos/id/212/800/800',
+    'https://picsum.photos/id/233/800/800',
+    'https://picsum.photos/id/165/800/800',
+    'https://picsum.photos/id/99/800/800',
+    'https://picsum.photos/id/144/800/800',
+])
 
 onBeforeMount( () => {
     products.forEach( ( prod ) => {
@@ -116,14 +127,16 @@ onBeforeMount( () => {
         }
     });
 })
+onMounted(() => {
 
-watchEffect( () => {
-    // console.log({product})
-    if (product) {
-        currentImage = product.url
-        images[0] = product.url
-        userStore.isLoading = false
-    }
+    watchEffect( () => {
+        // console.log({product})
+        if (product) {
+            currentImage.value = product.url
+            images.value[0] = product.url
+            userStore.isLoading = false
+        }
+    })
 })
 console.log({currentImage})
 
@@ -144,14 +157,6 @@ const priceComputed = computed(() => {
     return '0.00'
 })
 
-const images = ref([
-    '',
-    'https://picsum.photos/id/212/800/800',
-    'https://picsum.photos/id/233/800/800',
-    'https://picsum.photos/id/165/800/800',
-    'https://picsum.photos/id/99/800/800',
-    'https://picsum.photos/id/144/800/800',
-])
 
 const addToCart = () => {
     userStore.cart.push(product)
