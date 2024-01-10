@@ -1,7 +1,7 @@
 <template>
     <MainLayout>
         <div id="ItemPage" class="my-4 max-w-[1200px] mx-auto px-2">
-            <div class="md:flex gap-4 justify-between mx-auto w-full space-y-4">
+            <div class="md:flex gap-4 justify-between mx-auto w-full space-y-4 md:mb-28">
                 <div class="md:w-[40%] md:max-h-[20rem]">
                     <img 
                         v-if="currentImage"
@@ -74,6 +74,8 @@
                             bg-gradient-to-r 
                             from-[#FF851A] 
                             to-[#FFAC2C]
+                            disabled:cursor-not-allowed
+                            
                         "
                     >
                         <div v-if="isInCart">Is Added</div>
@@ -138,7 +140,7 @@ onMounted(() => {
         }
     })
 })
-console.log({userStore})
+
 
 const isInCart = computed(() => {
     let res = false
@@ -159,7 +161,7 @@ const priceComputed = computed(() => {
 
 
 const addToCart = () => {
-    userStore.cart.push(product)
+        userStore.cart.push(product)
 }
 </script>
 
