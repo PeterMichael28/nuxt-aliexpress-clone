@@ -13,7 +13,10 @@
 <Loading v-if="userStore.isLoading" />
 
   <div class="lg:pt-[150px] md:pt-[130px] pt-[80px]" />
-  <slot />
+  <div class="px-2 m:px-0">
+
+    <slot />
+  </div>
 
   <Footer v-if="!userStore.isLoading" />
 </template>
