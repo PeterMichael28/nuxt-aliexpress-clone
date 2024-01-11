@@ -23,7 +23,8 @@ export default defineNuxtConfig({
   public: {
    stripePk: process.env.STRIPE_PK_KEY,
   },
- },
+  },
+ 
     // ...
     supabase: {
       // Options

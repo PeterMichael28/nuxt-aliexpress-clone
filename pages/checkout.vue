@@ -165,7 +165,8 @@ watchEffect(() => {
     if (route.fullPath == '/checkout' && !user.value) {
         return navigateTo('/login')
     }
-})
+} )
+
 
 onMounted(async () => {
     isProcessing.value = true
@@ -179,7 +180,7 @@ onMounted(async () => {
 
 const stripeInit = async () => {
     const runtimeConfig = useRuntimeConfig()
-    stripe = Stripe(runtimeConfig.stripePk);
+    stripe = Stripe("pk_test_51OXJu1K9kbSsvE1ltjf5aGRE9ySz4ZdfGKTZHpia18SfQFvvMes3h2aI830eq3XmSKWVxUzfifp7oUnpk6Sxr61K00qRWAgYvh");
 
     let res = await $fetch('/api/stripe/paymentintent', {
         method: 'POST',
