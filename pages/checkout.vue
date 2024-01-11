@@ -55,7 +55,7 @@
                     </div>
 
                     <div id="Items" class="bg-white rounded-lg p-4 mt-4">
-                        <div v-for="product in userStore.checkout">
+                        <div v-for="product in userStore.cart">
                             <CheckoutItem :product="product" />
                         </div>
                     </div>
@@ -150,7 +150,7 @@ let currentAddress = ref(null)
 let isProcessing = ref(false)
 
 onBeforeMount(async () => {
-    if (userStore.checkout.length < 1) {
+    if (userStore.cart.length < 1) {
         return navigateTo('/shoppingcart')
     }
 
@@ -171,7 +171,7 @@ watchEffect(() => {
 onMounted(async () => {
     isProcessing.value = true
 
-    userStore.checkout.forEach(item => {
+    userStore.cart.forEach(item => {
         total.value += item.price
     })
     isProcessing.value = false
@@ -188,7 +188,6 @@ const stripeInit = async () => {
             amount: total.value,
         }
     })
-    console.log('res', total.value)
     clientSecret = res.client_secret
 
     elements = stripe.elements();
@@ -243,7 +242,7 @@ const pay = async () => {
     } else {
         await createOrder(result.paymentIntent.id)
         userStore.cart = []
-        userStore.checkout = []
+        
         setTimeout(() => {
             return navigateTo('/success')
         }, 500)
@@ -261,7 +260,7 @@ const createOrder = async (stripeId) => {
             zipcode: currentAddress.value.data.zipcode,
             city: currentAddress.value.data.city,
             country: currentAddress.value.data.country,
-            products: userStore.checkout
+            products: userStore.cart
         }
     })
 }
