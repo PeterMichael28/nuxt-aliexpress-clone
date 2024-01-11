@@ -1,36 +1,36 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
-  },
-  "devDependencies": {
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
-    "autoprefixer": "^10.4.16",
-    "nuxt": "^3.9.0",
-    "postcss": "^8.4.33",
-    "vue": "^3.4.6",
-    "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "@nuxtjs/supabase": "^1.1.5",
-    "@nuxtjs/tailwindcss": "^6.10.4",
-    "@pinia/nuxt": "^0.5.1",
-    "@prisma/client": "^5.7.1",
-    "@stripe/stripe-js": "^2.3.0",
-    "nuxt-icon": "^0.6.8",
-    "nuxt-lodash": "^2.5.3",
-    "pinia": "^2.1.7",
-    "prisma": "^5.7.1",
-    "stripe": "^14.11.0"
-  }
+ "name": "nuxt-app",
+ "private": true,
+ "type": "module",
+ "scripts": {
+  "build": "nuxt build",
+  "dev": "nuxt dev",
+  "generate": "nuxt generate",
+  "preview": "nuxt preview",
+  "postinstall": "nuxt prepare && prisma generate"
+ },
+ "prisma": {
+  "seed": "node prisma/seed.js"
+ },
+ "devDependencies": {
+  "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+  "autoprefixer": "^10.4.16",
+  "nuxt": "^3.9.0",
+  "postcss": "^8.4.33",
+  "vue": "^3.4.6",
+  "vue-router": "^4.2.5"
+ },
+ "dependencies": {
+  "@nuxtjs/supabase": "^1.1.5",
+  "@nuxtjs/tailwindcss": "^6.10.4",
+  "@pinia/nuxt": "^0.5.1",
+  "@prisma/client": "^5.7.1",
+  "@stripe/stripe-js": "^2.3.0",
+  "nuxt-icon": "^0.6.8",
+  "nuxt-lodash": "^2.5.3",
+  "pinia": "^2.1.7",
+  "prisma": "^5.7.1",
+  "stripe": "^14.11.0"
+ }
 }
 
