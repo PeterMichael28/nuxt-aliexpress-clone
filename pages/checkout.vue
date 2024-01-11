@@ -176,11 +176,6 @@ onMounted(async () => {
     isProcessing.value = false
 })
 
-watch(() => total.value, () => {
-    if (total.value > 0) {
-        stripeInit()
-    }
-})
 
 const stripeInit = async () => {
     const runtimeConfig = useRuntimeConfig()
@@ -192,6 +187,7 @@ const stripeInit = async () => {
             amount: total.value,
         }
     })
+    console.log('res', total.value)
     clientSecret = res.client_secret
 
     elements = stripe.elements();
@@ -220,6 +216,14 @@ const stripeInit = async () => {
 
     isProcessing.value = false
 }
+
+watch( () => total.value, () => {
+    console.log(total.value)
+    if (total.value > 0) {
+        stripeInit()
+    }
+})
+
 
 const pay = async () => {
     if (currentAddress.value && currentAddress.value.data == '') {
@@ -269,6 +273,7 @@ const showError = (errorMsgText) => {
 };
 
 </script>
+
 
 
 

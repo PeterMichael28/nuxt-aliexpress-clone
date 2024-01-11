@@ -9,4 +9,4 @@ export default defineEventHandler(async (event) => {
       currency: 'usd',
       automatic_payment_methods: { enabled: true },
     });
-})
+} );
