@@ -24,12 +24,24 @@ export default defineNuxtConfig({
    stripePk: process.env.STRIPE_PK_KEY,
   },
  },
- 
+    // ...
+    supabase: {
+      // Options
+      redirectOptions: {
+        login: '/login',
+        callback: '/',
+        exclude: [],
+      }
+    
+    },
+
+  
  app: {
   head: {
    script: [{ src: 'https://js.stripe.com/v3/', defer: true }],
   },
  },
 });
+
 
 

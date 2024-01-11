@@ -49,11 +49,11 @@
 const client = useSupabaseClient();
 const user = useSupabaseUser();
 
-watchEffect(() => {
- if (user.value) {
-  return navigateTo('/');
- }
-});
+watch(user, () => {
+  if (user.value) {
+    return navigateTo('/')
+  }
+}, { immediate: true })
 
 const login = async (prov) => {
  const { data, error } = await client.auth.signInWithOAuth({

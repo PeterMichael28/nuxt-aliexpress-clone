@@ -134,8 +134,18 @@ const images = ref([
     'https://picsum.photos/id/144/800/800',
 ])
 
+
 const addToCart = () => {
-    userStore.cart.push(product.value.data)
+
+    if ( isInCart.value ) {
+        const alreadyExistsIndex = userStore.cart.findIndex(item => item.id === product.value.id)
+        if ( alreadyExistsIndex ) {
+            return userStore.cart.splice(alreadyExistsIndex, 1)
+        } 
+    } else {
+
+        return userStore.cart.push(product.value.data)
+    }
 }
 </script>
 

@@ -72,7 +72,7 @@
                             <div class="">Free</div>
                         </div>
 
-                        <div class="border-t" />
+                        <div class="border-t " />
 
                         <div class="flex items-center justify-between my-4">
                             <div class="font-semibold">Total</div>
@@ -173,6 +173,7 @@ onMounted(async () => {
     userStore.checkout.forEach(item => {
         total.value += item.price
     })
+    isProcessing.value = false
 })
 
 watch(() => total.value, () => {

@@ -11,6 +11,7 @@
             duration-300
         "
     >
+    
         <NuxtLink :to="`/item/${product.id}`">
             <img 
                 class="rounded-t "

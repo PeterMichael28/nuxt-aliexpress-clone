@@ -89,6 +89,7 @@ let zipCode = ref(null)
 let city = ref(null)
 let country = ref(null)
 
+
 let currentAddress = ref(null)
 let isUpdate = ref(false)
 let isWorking = ref(false)
@@ -106,6 +107,7 @@ watchEffect(async () => {
 
         isUpdate.value = true
     }
+
 
     userStore.isLoading = false
 })
