@@ -49,8 +49,7 @@
                         <div v-for="product in userStore.cart">
                             <CartItem 
                                 :product="product" 
-                                :selectedArray="selectedArray"
-                                @selectedRadio="selectedRadioFunc"
+                               
                             />
                         </div>
                     </div>
@@ -136,33 +135,35 @@ const totalPriceComputed = computed(() => {
     return price / 100
 })
 
-const selectedRadioFunc = (e) => {
+// const selectedRadioFunc = (e) => {
 
-    if (!selectedArray.value.length) {
-        selectedArray.value.push(e)
-        return
-    }
+//     if (!selectedArray.value.length) {
+//         selectedArray.value.push(e)
+//         return
+//     }
 
-    selectedArray.value.forEach((item, index) => {
-        if (e.id != item.id) {
-            selectedArray.value.push(e)
-        } else {
-            selectedArray.value.splice(index, 1);
-        }
-    })
-}
+//     selectedArray.value.forEach((item, index) => {
+//         if (e.id != item.id) {
+//             selectedArray.value.push(e)
+//         } else {
+//             selectedArray.value.splice(index, 1);
+//         }
+//     })
+// }
+// <!-- :selectedArray="selectedArray"
+//  @selectedRadio="selectedRadioFunc" -->
 
 const goToCheckout = () => {
-    let ids = []
-    userStore.checkout = []
+    // let ids = []
+    // userStore.checkout = []
 
-    selectedArray.value.forEach(item => ids.push(item.id))
+    // selectedArray.value.forEach(item => ids.push(item.id))
 
-    let res = userStore.cart.filter((item) => {
-        return ids.indexOf(item.id) != -1
-    })
+    // let res = userStore.cart.filter((item) => {
+    //     return ids.indexOf(item.id) != -1
+    // })
 
-    res.forEach(item => userStore.checkout.push(toRaw(item)))
+    // res.forEach(item => userStore.checkout.push(toRaw(item)))
 
     return navigateTo('/checkout')
 }

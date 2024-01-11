@@ -6,8 +6,8 @@
                 @mouseleave="isHover = false"
                 class="flex items-center justify-start p-0.5 cursor-pointer"
             >
-                <div 
-                    @click="isSelected = !isSelected"
+                <!-- <div 
+                    
                     class=" flex items-center justify-center h-[20px] w-[20px] rounded-full border mr-5 ml-2"
                     :class="[
                         isHover ? 'border-[#FD374F]' : 'border-gray-300',
@@ -15,7 +15,7 @@
                     ]"
                 >
                     <div class="h-[8px] w-[8px] rounded-full bg-white" />
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -66,13 +66,13 @@
 import { useUserStore } from '~/stores/user';
 const userStore = useUserStore()
 
-const props = defineProps(['product', 'selectedArray'])
-const { product, selectedArray } = toRefs(props)
+const props = defineProps(['product'])
+const { product } = toRefs(props)
 
-const emit = defineEmits(['selectedRadio'])
+// const emit = defineEmits(['selectedRadio'])
 
 let isHover = ref(false)
-let isSelected = ref(false)
+// let isSelected = ref(false)
 
 const removeFromCart = () => {
     userStore.cart.forEach((prod, index) => {
@@ -82,7 +82,9 @@ const removeFromCart = () => {
     })
 }
 
-watch(() => isSelected.value, (val) => {
-    emit('selectedRadio', { id: product.value.id, val: val })
-})
+// watch(() => isSelected.value, (val) => {
+//     emit('selectedRadio', { id: product.value.id, val: val })
+// })
 </script>
+
+<!-- @click="isSelected = !isSelected" -->
